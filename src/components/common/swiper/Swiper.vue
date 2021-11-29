@@ -17,18 +17,22 @@
 	export default {
 		name: "Swiper",
     props: {
+      // 多长时间换一张图片
       interval: {
 		    type: Number,
         default: 3000
       },
+      // 换一张图片需要多长时间
       animDuration: {
 		    type: Number,
         default: 300
       },
+      // 当移动图片多长时切换图片 0.25即图片的1/4
       moveRatio: {
         type: Number,
         default: 0.25
       },
+      // 是否展示轮播图下的 ....
       showIndicator: {
         type: Boolean,
         default: true
