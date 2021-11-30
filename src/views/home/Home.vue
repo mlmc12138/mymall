@@ -9,6 +9,7 @@
       </div>
     </nav-bar>
     <home-swiper :banners="banners"></home-swiper>
+    <recommend-view :recommends="recommends"></recommend-view>
   </div>
 </template>
 
@@ -16,6 +17,7 @@
 import NavBar from "@/components/common/navBar/navBar.vue";
 import HomeSwiper from "./childrenComps/HomeSwiper.vue";
 import { getHomeMultidata } from "@/network/home.js";
+import RecommendView from './childrenComps/RecommendView.vue'
 export default {
   data() {
     return {
@@ -26,9 +28,10 @@ export default {
   components: {
     NavBar,
     HomeSwiper,
+    RecommendView,
   },
   created() {
-    getHomeMultidata().then((res) => {
+   getHomeMultidata().then((res) => {
       // 对获取到的数据进行保存
       this.banners = res.data.data.banner.list;
       this.recommends = res.data.data.recommend.list;
