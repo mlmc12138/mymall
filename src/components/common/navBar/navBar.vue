@@ -23,6 +23,10 @@ export default {
     height: 44px;
     background-color: red;
     box-shadow: 0px 1px 1px rgba(100, 100, 100, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
   }
   img {
     width: 30px;
