@@ -19,6 +19,6 @@ export default {
 <style  scoped>
   img {
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 5px;
   }
 </style>
