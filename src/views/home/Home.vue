@@ -13,11 +13,11 @@
     <feature-view></feature-view>
     <tab-control
       class="tar-control"
+      @tabClick="tabClick"
       :titles="['流行', '精选', '推荐']"
     ></tab-control>
-    <goods-list :goods="goods['pop'].list"></goods-list>
-    <div style="height: 60px">
-    </div>
+    <goods-list :goods="goods[curryType].list"></goods-list>
+    <div style="height: 60px"></div>
   </div>
 </template>
 
@@ -26,7 +26,7 @@
 import NavBar from "@/components/common/navBar/navBar.vue";
 import HomeSwiper from "./childrenComps/HomeSwiper.vue";
 import FeatureView from "./childrenComps/FeatureView.vue";
-import GoodsList from '@/components/content/goods/GoodsList.vue';
+import GoodsList from "@/components/content/goods/GoodsList.vue";
 
 // 公用组件
 import RecommendView from "./childrenComps/RecommendView.vue";
@@ -42,10 +42,11 @@ export default {
       banners: [],
       recommends: [],
       goods: {
-        "pop": { page: 0, list: [] },
-        "new": { page: 0, list: [] },
-        "sell": { page: 0, list: [] },
+        pop: { page: 0, list: [] },
+        new: { page: 0, list: [] },
+        sell: { page: 0, list: [] },
       },
+      curryType: "pop",
     };
   },
   components: {
@@ -58,13 +59,28 @@ export default {
   },
   created() {
     // 1,获取多个数据
-    this.getHomeMultidata()
+    this.getHomeMultidata();
     // 2,获取商品数据
-    this.getHomeGoods("pop")
-    this.getHomeGoods("new")
-    this.getHomeGoods("sell")
+    this.getHomeGoods("pop");
+    this.getHomeGoods("new");
+    this.getHomeGoods("sell");
   },
   methods: {
+    // *事件监听相关
+    tabClick(index) {
+      switch (index) {
+        case 0:
+          this.curryType = "pop";
+          break;
+        case 1:
+          this.curryType = "new";
+          break;
+        case 2:
+          this.curryType = "sell";
+      }
+    },
+
+    // *网络请求相关
     getHomeMultidata() {
       getHomeMultidata().then((res) => {
         // 对获取到的数据进行保存
@@ -73,12 +89,12 @@ export default {
       });
     },
     getHomeGoods(type) {
-      const page = this.goods[type].page + 1
-      getHomeGoods(type,page).then((res) => {
-        this.goods[type].list.push(...res.data.data.list)
-        this.goods[type].page += 1
-      } )
-    }
+      const page = this.goods[type].page + 1;
+      getHomeGoods(type, page).then((res) => {
+        this.goods[type].list.push(...res.data.data.list);
+        this.goods[type].page += 1;
+      });
+    },
   },
 };
 </script>
