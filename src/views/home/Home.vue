@@ -8,15 +8,19 @@
         <img src="@/assets/img/header/sousuo.svg" alt="" />
       </div>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <recommend-view :recommends="recommends"></recommend-view>
-    <feature-view></feature-view>
-    <tab-control
-      class="tar-control"
-      @tabClick="tabClick"
-      :titles="['流行', '精选', '推荐']"
-    ></tab-control>
-    <goods-list :goods="goods[curryType].list"></goods-list>
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
+      <home-swiper :banners="banners"></home-swiper>
+      <recommend-view :recommends="recommends"></recommend-view>
+      <feature-view></feature-view>
+      <tab-control
+        class="tar-control"
+        @tabClick="tabClick"
+        :titles="['流行', '精选', '推荐']"
+      ></tab-control>
+      <goods-list :goods="goods[curryType].list"></goods-list>
+    </scroll>
+    <!-- 监听组件要使用 .native -->
+    <back-top @click.native="backClick()" v-show="isShow"></back-top>
     <div style="height: 60px"></div>
   </div>
 </template>
@@ -35,6 +39,8 @@ import TabControl from "@/components/content/tabControl/tabControl.vue";
 // 方法
 import { getHomeMultidata } from "@/network/home.js";
 import { getHomeGoods } from "@/network/home.js";
+import Scroll from "@/components/common/scroll/scroll.vue";
+import BackTop from '../../components/content/backTop/backTop.vue';
 
 export default {
   data() {
@@ -47,6 +53,7 @@ export default {
         sell: { page: 0, list: [] },
       },
       curryType: "pop",
+      isShow: false
     };
   },
   components: {
@@ -56,6 +63,8 @@ export default {
     FeatureView,
     TabControl,
     GoodsList,
+    Scroll,
+    BackTop,
   },
   created() {
     // 1,获取多个数据
@@ -79,7 +88,14 @@ export default {
           this.curryType = "sell";
       }
     },
-
+    backClick() {
+      // scrollTo(x,y,时间(ms))
+      this.$refs.scroll.scroll.scrollTo(0,0,500)
+      // console.log(this.$refs.scroll.message);
+    },
+    contentScroll(position) {
+      this.isShow = position.y < -1000 ? true : false
+    },
     // *网络请求相关
     getHomeMultidata() {
       getHomeMultidata().then((res) => {
@@ -102,9 +118,13 @@ export default {
 <style  scoped>
 #home {
   padding-top: 44px;
+  height: 100vh;
 }
 .tab-control {
   position: sticky;
   top: 44px;
+}
+.content {
+  height: calc(100% - 107px);
 }
 </style>
