@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- 占位 路由跳转时会被替换 -->
     <router-view></router-view>
     <Maintabbar></Maintabbar>
   </div>

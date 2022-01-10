@@ -8,7 +8,14 @@
         <img src="@/assets/img/header/sousuo.svg" alt="" />
       </div>
     </nav-bar>
-    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
+    <scroll
+      class="content"
+      ref="scroll"
+      :probe-type="3"
+      @scroll="contentScroll"
+      :pull-up-load= "true"
+      @pullUp="loadUp"
+    >
       <home-swiper :banners="banners"></home-swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
@@ -40,7 +47,7 @@ import TabControl from "@/components/content/tabControl/tabControl.vue";
 import { getHomeMultidata } from "@/network/home.js";
 import { getHomeGoods } from "@/network/home.js";
 import Scroll from "@/components/common/scroll/scroll.vue";
-import BackTop from '../../components/content/backTop/backTop.vue';
+import BackTop from "../../components/content/backTop/backTop.vue";
 
 export default {
   data() {
@@ -53,7 +60,7 @@ export default {
         sell: { page: 0, list: [] },
       },
       curryType: "pop",
-      isShow: false
+      isShow: false,
     };
   },
   components: {
@@ -90,12 +97,16 @@ export default {
     },
     backClick() {
       // scrollTo(x,y,时间(ms))
-      this.$refs.scroll.scroll.scrollTo(0,0,500)
+      this.$refs.scroll.scroll.scrollTo(0, 0, 500);
       // console.log(this.$refs.scroll.message);
     },
     contentScroll(position) {
-      this.isShow = position.y < -1000 ? true : false
+      this.isShow = position.y < -1000 ? true : false;
     },
+    loadUp() {
+      this.getHomeGoods(this.curryType)
+    },
+
     // *网络请求相关
     getHomeMultidata() {
       getHomeMultidata().then((res) => {
@@ -109,6 +120,7 @@ export default {
       getHomeGoods(type, page).then((res) => {
         this.goods[type].list.push(...res.data.data.list);
         this.goods[type].page += 1;
+        this.$refs.scroll.scroll.finishPullUp()
       });
     },
   },
