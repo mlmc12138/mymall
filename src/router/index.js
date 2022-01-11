@@ -5,6 +5,7 @@ const Home = () => import('@/views/home/Home.vue')
 const Card = () => import('@/views/card/Card.vue')
 const Kinds = () => import('@/views/kinds/Kind.vue')
 const Profile = () => import('@/views/profile/Profile.vue')
+const Detail = () => import('@/views/detail/Detail.vue')
 // 使用插件
 Vue.use(VueRouter);
 // 创建对象
@@ -17,6 +18,10 @@ const routes = [
     path: '/home',
     component: Home
   }, 
+  {
+    path: '/detail/',
+    component: Detail
+  },
   {
     path: '/card',
     component: Card

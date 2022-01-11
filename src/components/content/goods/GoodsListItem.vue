@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-  <div class="goodsItems">
-    <a :href="goodsItem.link"><img :src="goodsItem.show.img" alt="" /></a>
+  <div class="goodsItems" @click="itemClick">
+   <img :src="goodsItem.show.img" alt="" />
     <div class="goodsInfo">
       <p class="title">{{ goodsItem.title }}</p>
       <span class="price">{{ goodsItem.price }}</span>
@@ -24,6 +24,16 @@ export default {
       },
     },
   },
+  methods: {
+    itemClick() {
+      this.$router.push({
+        path: "/detail",
+        query: {
+         iid: this.goodsItem.iid
+        }
+      })
+    }
+  }
 };
 </script>
 

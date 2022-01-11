@@ -61,6 +61,7 @@ export default {
       },
       curryType: "pop",
       isShow: false,
+      scrollY: 0,
     };
   },
   components: {
@@ -81,6 +82,15 @@ export default {
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
+  // 进入
+  // activated() {
+  //   this.$refs.scroll.scroll.scrollTo(0,this.scrollY,0)
+  // },
+  // 离开
+  // deactivated() {
+  //   this.scrollY = this.$refs.scroll._scroll.y
+  //   console.log(scrollY);
+  // },
   methods: {
     // *事件监听相关
     tabClick(index) {

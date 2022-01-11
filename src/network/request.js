@@ -24,10 +24,6 @@ export function request(config) {
     baseURL: 'http://152.136.185.210:7878/api/hy66',
     timeout: 5000
   })
-  const instance2 = axios.create({
-    baseURL: 'http://www.blogry.cn',
-    timeout: 5000
-  })
 // axios拦截器
 instance1.interceptors.request.use(config=> {
   //1 当一些config中的信息不符合服务器时进行拦截
