@@ -18,7 +18,7 @@
     </nav-bar>
     <!-- 轮播 -->
     <detail-swaper :swaperImg="swaperImg"></detail-swaper>
-    <div>{{$store.state.goodsList.length}}</div>
+    <div>{{ $store.state.goodsList.length }}</div>
     <!-- 价格详情 -->
     <detail-mess :detailMess="goodsInfo" @addGoods="addGoods"> </detail-mess>
     <!-- 评论 -->
@@ -33,6 +33,7 @@ import { getDetail, Goods } from "@/network/detail.js";
 import DetailSwaper from "./childrenComps/detailSwaper.vue";
 import DetailMess from "./childrenComps/detailMess.vue";
 export default {
+  name: "Detail",
   components: { navBar, DetailSwaper, DetailMess },
   data() {
     return {
@@ -41,15 +42,14 @@ export default {
       iid: null,
       swaperImg: [],
       goodsInfo: {},
-      
     };
   },
   created() {
+    // 商品详细数据
     this.iid = this.$route.query.iid;
-
     getDetail(this.iid).then((res) => {
       const data = res.data.result;
-      console.log(data);
+      console.log(this.iid);
       this.swaperImg = data.itemInfo.topImages;
       this.goodsInfo = new Goods(
         data.itemInfo,
@@ -64,14 +64,13 @@ export default {
     },
     addGoods() {
       const product = {};
-      product.img = this.swaperImg[0]
+      product.img = this.swaperImg[0];
       product.title = this.goodsInfo.title;
       product.price = this.goodsInfo.price;
       product.desc = this.goodsInfo.desc;
 
       // mutation
       this.$store.commit("addGoods", product);
-    
     },
   },
 };

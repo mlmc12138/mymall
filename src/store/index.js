@@ -10,6 +10,7 @@ const store = new vuex.Store({
   },
   mutations: {
     addGoods(state, payload) {
+        console.log(payload);
         state.goodsList.push(payload)
     }
   },

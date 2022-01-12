@@ -3,10 +3,9 @@
   <div class="card-list">
     <div
       class="card-list-item"
-      v-for="(item, index) in goodsList"
+      v-for="(item,index) in goodsList"
       :key="index"
     >
-
       <div class="left">
         <img :src="item.img" alt="">
       </div>
