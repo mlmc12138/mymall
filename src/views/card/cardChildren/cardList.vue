@@ -12,7 +12,6 @@
       <div class="right">
         {{item.title}}
        <i>{{item.price}}</i>
-       
       </div>
     </div>
     <button :class="{payFor: $store.state.goodsList.length > 0}">领券结算</button>

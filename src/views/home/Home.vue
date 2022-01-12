@@ -31,8 +31,8 @@
     <div style="height: 60px"></div>
   </div>
 </template>
-
 <script>
+
 // 子组件
 import NavBar from "@/components/common/navBar/navBar.vue";
 import HomeSwiper from "./childrenComps/HomeSwiper.vue";
@@ -82,15 +82,6 @@ export default {
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
-  // 进入
-  // activated() {
-  //   this.$refs.scroll.scroll.scrollTo(0,this.scrollY,0)
-  // },
-  // 离开
-  // deactivated() {
-  //   this.scrollY = this.$refs.scroll._scroll.y
-  //   console.log(scrollY);
-  // },
   methods: {
     // *事件监听相关
     tabClick(index) {

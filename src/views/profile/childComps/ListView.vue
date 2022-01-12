@@ -11,7 +11,6 @@
 
 <script>
 	export default {
-		name: "ListView",
     props: {
 		  listData: {
 		    type: Array,

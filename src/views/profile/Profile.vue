@@ -33,7 +33,6 @@
   import NavBar from '@/components/common/navBar/navBar'
 
 	export default {
-		name: "Profile",
     components: {
 		  UserInfo, ListView, NavBar
     },
