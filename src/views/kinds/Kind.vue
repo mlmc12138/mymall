@@ -8,19 +8,26 @@
         <img src="@/assets/img/header/sousuo.svg" alt="" />
       </div>
     </nav-bar>
-    <div class="wrapper">
-      <ul class="content">
-       
-      </ul>
+    <div class="content">
+      <div class="left">
+        <tab-control
+        class="tar-control"
+        :titles="['男装', '女装', '童装','同款','复古','潮流','校园','职场','其他']"
+      ></tab-control>
+      </div>
+      <div class="right">
+        <img src="@/assets/img/goodsList(1).png" alt="">
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import navBar from "@/components/common/navBar/navBar.vue";
-import BScroll from "better-scroll";
+import TabControl from '../../components/content/tabControl/tabControl.vue';
+
 export default {
-  components: { navBar },
+  components: { navBar,TabControl },
   data() {
     return {};
   },
@@ -29,21 +36,22 @@ export default {
 
   },
   mounted() {
-    new BScroll(".wrapper", {
-     
-    });
   },
 };
 </script>
 
 <style  scoped>
-.wrapper {
+.content {
   margin-top: 44px;
-  width: 100%;
-  height: 200px;
-  background-color: skyblue;
-  overflow: hidden;
-  /* overflow-y: scroll; */
-  /* overflow: auto; */
+}
+.tar-control {
+  display: flex;
+  flex-direction: column;
+}
+.right {
+  position: fixed;
+  top: 44px;
+  right: 0;
+  width: 85%;
 }
 </style>

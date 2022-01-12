@@ -12,9 +12,10 @@
       <div class="right">
         {{item.title}}
        <i>{{item.price}}</i>
+       
       </div>
     </div>
-    <button class="payFor">领券结算</button>
+    <button :class="{payFor: $store.state.goodsList.length > 0}">领券结算</button>
   </div>
 </template>
 
@@ -52,6 +53,12 @@ export default {
 }
 .card-list-item i {
   color: red;
+}
+.card-list-item span {
+  color: black;
+  display: inline-block;
+  width: 10px;
+  margin-left: 100px;
 }
 .card-list-item img {
   height: 60px;

@@ -24,4 +24,7 @@ export default {
 </script>
 
 <style  scoped>
+.active {
+  display: none;
+}
 </style>

@@ -9,9 +9,15 @@ const store = new vuex.Store({
     goodsList: []
   },
   mutations: {
-    addGoods(state, payload) {
-        console.log(payload);
-        state.goodsList.push(payload)
+    addGoods(state, info) {
+      // const oldInfo = state.goodsList.find(item => item.iid === info.iid)
+      // if (oldInfo) {
+      //   oldInfo.count += 1
+      // } else {
+      //   info.count = 1
+      //   state.goodsList.push(info)
+      // }
+      state.goodsList.push(info)
     }
   },
   getters

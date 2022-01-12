@@ -18,7 +18,6 @@
     </nav-bar>
     <!-- 轮播 -->
     <detail-swaper :swaperImg="swaperImg"></detail-swaper>
-    <div>{{ $store.state.goodsList.length }}</div>
     <!-- 价格详情 -->
     <detail-mess :detailMess="goodsInfo" @addGoods="addGoods"> </detail-mess>
     <!-- 评论 -->
